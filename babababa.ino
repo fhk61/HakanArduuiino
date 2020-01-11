@@ -24,10 +24,13 @@ void loop () {
 
  lcd.clear();
  lcd.setCursor(0,0);
- lcd.print("Sicaklik" );
+ lcd.print("Sicaklik:" );
  lcd.setCursor(0,1);
  lcd.print(Temperature);
  lcd.print(" ^C");
+ 
+ 
+ 
 
  
  Serial.print("Sicaklik : "); //TEMPERATURE
@@ -36,14 +39,16 @@ void loop () {
 
  
  
- if (Temperature>=24 )
+ if (Temperature>=26 &&  Temperature <32)
  {
-  digitalWrite(motor,HIGH);
+  analogWrite(motor,128);
  }
 
- 
+ else if (Temperature>=32){
+  analogWrite(motor,255); 
+ }
  else{
-    digitalWrite(motor,LOW);
+    analogWrite(motor,0);
   }
 delay(1500);
 }
